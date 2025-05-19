@@ -21,7 +21,7 @@ const app = express();
 // Determine __dirname for ES modules
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const logFile = join(__dirname, 'blogchef.log');
-const PORT = proecess.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Security middleware to set HTTP headers
 app.use(helmet());
