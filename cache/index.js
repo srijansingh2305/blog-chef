@@ -6,8 +6,8 @@ redisClient
   .on('connect', () => {
     console.log('Connected to Redis');
   })
-  .on('error', () => {
-    console.log('Error connecting to Redis', error);
+  .on('error', (err) => {
+    console.error('Error connecting to Redis', err);
   });
 
 export default redisClient;

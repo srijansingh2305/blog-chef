@@ -6,7 +6,7 @@
  */
 
 import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 // Define the User schema
 const userSchema = new Schema({
@@ -36,7 +36,7 @@ userSchema.pre('save', function (next) {
   if (!this.isModified('password')) {
     return next();
   }
-  this.password = bcrypt.hashSync(this.password, 10);
+  this.password = bcryptjs.hashSync(this.password, 10);
   next();
 });
 
@@ -46,7 +46,7 @@ userSchema.pre('save', function (next) {
  * @returns {Promise} Resolves if password matches, rejects otherwise.
  */
 userSchema.methods.checkPassword = async function (password) {
-  const match = await bcrypt.compare(password, this.password);
+  const match = await bcryptjs.compare(password, this.password);
   if (match) {
     return Promise.resolve();
   } else {
